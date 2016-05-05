@@ -1,0 +1,62 @@
+cmake_minimum_required (VERSION 2.8.10)
+PROJECT (HDFJAVA_NCSA_HDF_HDF4 Java)
+
+set (CMAKE_VERBOSE_MAKEFILE 1)
+
+INCLUDE_DIRECTORIES (
+    ${HDFJAVA_NCSA_HDF_HDF4_SOURCE_DIR}
+    ${HDFJAVA_NCSA_HDF_HDF4_BINARY_DIR}
+    ${HDFJAVA_LIB_DIR}
+    ${CMAKE_CURRENT_BINARY_DIR}/CMakeFiles/${HDFJAVA_NCSA_HDF_LIB_CORENAME}.dir/ncsa/hdf/hdflib
+)
+
+SET_GLOBAL_VARIABLE (HDFJAVA_SOURCE_PACKAGES
+    "${HDFJAVA_SOURCE_PACKAGES};ncsa.hdf.hdflib"
+)
+
+set (HDFJAVA_NCSA_HDF_HDF4_SRCS
+    HDFException.java
+    HDFJavaException.java
+    HDFArray.java
+    HDFChunkInfo.java
+    HDFCompInfo.java
+    HDFConstants.java
+    HDFDeflateCompInfo.java
+    HDFDeprecated.java
+    HDFIMCOMPCompInfo.java
+    HDFJPEGCompInfo.java
+    HDFLibrary.java
+    HDFLibraryException.java
+    HDFNativeData.java
+    HDFNewCompInfo.java
+    HDFNBITChunkInfo.java
+    HDFNBITCompInfo.java
+    HDFNotImplementedException.java
+    HDFOldCompInfo.java
+    HDFOldRLECompInfo.java
+    HDFRLECompInfo.java
+    HDFSKPHUFFCompInfo.java
+    HDFSZIPCompInfo.java
+    HDFTable.java
+)
+
+set (CMAKE_JNI_TARGET TRUE)
+
+file (WRITE ${PROJECT_BINARY_DIR}/Manifest.txt
+"
+"
+)
+
+set (CMAKE_JAVA_INCLUDE_PATH "${HDFJAVA_LOGGING_JAR}")
+
+add_jar (${HDFJAVA_NCSA_HDF_LIB_TARGET} OUTPUT_NAME "${HDFJAVA_NCSA_HDF_LIB_TARGET}-${HDFJAVA_PACKAGE_VERSION}" OUTPUT_DIR ${CMAKE_JAVA_TARGET_OUTPUT_DIR} MANIFEST ${PROJECT_BINARY_DIR}/Manifest.txt ${HDFJAVA_NCSA_HDF_HDF4_SRCS})
+install_jar (${HDFJAVA_NCSA_HDF_LIB_TARGET} ${HJAVA_INSTALL_JAR_DIR} libraries)
+#if (NOT WIN32)
+#  install_jni_symlink (${HDFJAVA_NCSA_HDF_LIB_TARGET} ${HJAVA_INSTALL_JAR_DIR} libraries)
+#endif (NOT WIN32)
+
+get_target_property (${HDFJAVA_NCSA_HDF_LIB_TARGET}_JAR_FILE ${HDFJAVA_NCSA_HDF_LIB_TARGET} JAR_FILE)
+SET_GLOBAL_VARIABLE (HDFJAVA_JARS_TO_EXPORT "${HDFJAVA_JARS_TO_EXPORT};${${HDFJAVA_NCSA_HDF_LIB_TARGET}_JAR_FILE}")
+SET_GLOBAL_VARIABLE (HDFJAVA_HDF4_JARS ${${HDFJAVA_NCSA_HDF_LIB_TARGET}_JAR_FILE})
+
+add_dependencies (${HDFJAVA_NCSA_HDF_LIB_TARGET} ${HDFJAVA_JNI_HDF_LIB_TARGET})
