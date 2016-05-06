@@ -51,7 +51,7 @@ object Hdf5NativesLoader {
       val jhdf5LibPath = new File(dir + File.separator + jhdf5Lib).getAbsolutePath
 
       // Set the System property looked at by the H5 loader to the library pathname
-      System.setProperty(H5.H5PATH_PROPERTY_KEY, jhdf5LibPath)
+      System.setProperty("ncsa.hdf.hdf5lib.H5.hdf5lib", jhdf5LibPath)
 
       // This is technically not needed- the H5 object will call this upon first use also.
       H5.loadH5Lib()
