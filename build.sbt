@@ -11,7 +11,7 @@ licenses ++= Seq(
   ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0.html"))
 )
 
-version := "2.11.0-hpe.2"
+version := "2.11.0-hpe.3"
 
 organization := "com.hpe.cct"
 
@@ -23,4 +23,4 @@ libraryDependencies += "org.slf4j" % "slf4j-api" % "1.7.12"
 
 bintrayRepository := "maven"
 
-bintrayOrganization := Some("cogexmachina")
+bintrayOrganization := Some("hpe-cct")
